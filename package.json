@@ -1,0 +1,33 @@
+{
+  "name": "r3f-ultimate-character-configurator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.112.0",
+    "@react-three/eslint-plugin": "^0.1.1",
+    "@react-three/fiber": "^8.17.7",
+    "@types/three": "^0.168.0",
+    "pocketbase": "^0.21.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.168.0",
+    "three-stdlib": "^2.33.0",
+    "zustand": "^5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11",
+    "vite": "^5.4.1"
+  }
+}
