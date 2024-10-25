@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+}
+
+.noscrollbar {
+  overflow-x: auto;
+  scrollbar-width: none; /* For Firefox */
+}
+
+.noscrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
