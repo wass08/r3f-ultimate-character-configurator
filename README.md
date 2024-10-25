@@ -38,3 +38,11 @@ Final repository
 ![Video thumbnail](https://github.com/user-attachments/assets/c91188b8-2917-4aee-bc3f-752e11c3b684)
 
 [Video tutorial](https://youtu.be/P0E4i2xCOJs)
+
+
+## Part 7 - Post Processing
+
+![Video thumbnail](https://github.com/user-attachments/assets/08925724-f7e4-423c-b701-560854edec53)
+
+
+[Video tutorial](https://youtu.be/wRd9PQ8MD9A)
