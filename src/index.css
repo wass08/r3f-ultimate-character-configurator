@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  background: black;
+}
+
 #root {
   width: 100vw;
   height: 100vh;
