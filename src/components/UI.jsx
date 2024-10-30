@@ -4,7 +4,7 @@ const PosesBox = () => {
   const curPose = useConfiguratorStore((state) => state.pose);
   const setPose = useConfiguratorStore((state) => state.setPose);
   return (
-    <div className="pointer-events-auto rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20  backdrop-blur-sm drop-shadow-md flex p-6 gap-3">
+    <div className="pointer-events-auto md:rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20  backdrop-blur-sm drop-shadow-md flex p-6 gap-3 overflow-x-auto noscrollbar">
       {Object.keys(PHOTO_POSES).map((pose) => (
         <button
           className={`transition-colors duration-200 font-medium flex-shrink-0 border-b ${
@@ -33,8 +33,8 @@ const AssetsBox = () => {
   } = useConfiguratorStore();
 
   return (
-    <div className="rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20  backdrop-blur-sm drop-shadow-md flex flex-col py-6 gap-3 overflow-hidden ">
-      <div className="flex items-center gap-8 pointer-events-auto overflow-x-auto noscrollbar px-6 pb-2">
+    <div className="md:rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20  backdrop-blur-sm drop-shadow-md flex flex-col py-6 gap-3 overflow-hidden ">
+      <div className="flex items-center gap-8 pointer-events-auto noscrollbar overflow-x-auto px-6 pb-2">
         {categories.map((category) => (
           <button
             key={category.id}
@@ -57,7 +57,7 @@ const AssetsBox = () => {
             .join(", ")}
         </p>
       )}
-      <div className="flex gap-2 overflow-x-auto px-6">
+      <div className="flex gap-2 overflow-x-auto noscrollbar px-6">
         {currentCategory?.removable && (
           <button
             onClick={() => changeAsset(currentCategory.name, null)}
@@ -211,7 +211,7 @@ export const UI = () => {
             <DownloadButton />
           </div>
         </div>
-        <div className="px-10 flex flex-col">
+        <div className="md:px-10 flex flex-col">
           {mode === UI_MODES.CUSTOMIZE && (
             <>
               {currentCategory?.colorPalette &&
@@ -267,7 +267,7 @@ const ColorPicker = () => {
     return null;
   }
   return (
-    <div className="pointer-events-auto relative flex gap-2 max-w-full overflow-x-auto backdrop-blur-sm py-2 drop-shadow-md">
+    <div className="pointer-events-auto relative flex gap-2 max-w-full overflow-x-auto backdrop-blur-sm py-2 drop-shadow-md noscrollbar px-2 md:px-0">
       {currentCategory.expand?.colorPalette?.colors.map((color, index) => (
         <button
           key={`${index}-${color}`}
