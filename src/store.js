@@ -161,3 +161,5 @@ export const useConfiguratorStore = create((set, get) => ({
     set({ lockedGroups });
   },
 }));
+
+useConfiguratorStore.getState().fetchCategories();

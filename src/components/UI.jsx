@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { pb, PHOTO_POSES, UI_MODES, useConfiguratorStore } from "../store";
 
 const PosesBox = () => {
@@ -27,16 +26,12 @@ const AssetsBox = () => {
   const {
     categories,
     currentCategory,
-    fetchCategories,
     setCurrentCategory,
     changeAsset,
     customization,
     lockedGroups,
   } = useConfiguratorStore();
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
   return (
     <div className="rounded-t-lg bg-gradient-to-br from-black/30 to-indigo-900/20  backdrop-blur-sm drop-shadow-md flex flex-col py-6 gap-3 overflow-hidden ">
       <div className="flex items-center gap-8 pointer-events-auto overflow-x-auto noscrollbar px-6 pb-2">
