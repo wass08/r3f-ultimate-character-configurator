@@ -117,7 +117,8 @@ export const Experience = () => {
         intensity={8}
         color={"#3cb1ff"}
       />
-      <Float floatIntensity={loading ? 1 : 0} speed={loading ? 6 : 0}>
+
+      <AvatarWrapper loading={loading}>
         <animated.group
           scale={scale}
           position-y={floatHeight}
@@ -125,7 +126,7 @@ export const Experience = () => {
         >
           <Avatar />
         </animated.group>
-      </Float>
+      </AvatarWrapper>
       <Gltf
         position-y={-0.31}
         src="/models/Teleporter Base.glb"
@@ -134,5 +135,15 @@ export const Experience = () => {
       />
       <LoadingAvatar loading={loading} />
     </>
+  );
+};
+
+const AvatarWrapper = ({ loading, children }) => {
+  return loading ? (
+    <Float floatIntensity={1} speed={6}>
+      {children}
+    </Float>
+  ) : (
+    children
   );
 };
