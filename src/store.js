@@ -4,9 +4,15 @@ import PocketBase from "pocketbase";
 import { MeshStandardMaterial } from "three";
 import { randInt } from "three/src/math/MathUtils.js";
 
+// The configurator needs a PocketBase backend for its asset catalog. The
+// reactive companion (overlay.html) does NOT — it ships its own avatar — so a
+// missing URL must not hard-crash the whole bundle. We warn instead and let the
+// companion run standalone; the configurator simply won't load its catalog.
 const pocketBaseUrl = import.meta.env.VITE_POCKETBASE_URL;
 if (!pocketBaseUrl) {
-  throw new Error("VITE_POCKETBASE_URL is required");
+  console.warn(
+    "VITE_POCKETBASE_URL is not set — the configurator's asset catalog is disabled. The companion (overlay.html) runs without it."
+  );
 }
 
 export const PHOTO_POSES = {
@@ -45,6 +51,10 @@ export const useConfiguratorStore = create((set, get) => ({
   customization: {},
   download: () => {},
   setDownload: (download) => set({ download }),
+  // Pet-ready export: a complete, uncompressed character GLB the desktop
+  // companion can load directly (no Draco decoder required).
+  exportForPet: () => {},
+  setExportForPet: (exportForPet) => set({ exportForPet }),
   screenshot: () => {},
   setScreenshot: (screenshot) => set({ screenshot }),
   updateColor: (color) => {

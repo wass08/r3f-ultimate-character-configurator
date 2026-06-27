@@ -3,10 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "desktop": "npm run dev --workspace @companion/desktop",
+    "desktop:build": "npm run build --workspace @companion/desktop",
+    "gateway": "npm run gateway --workspace @companion/desktop",
+    "mcp": "npm run mcp --workspace @companion/desktop"
   },
   "dependencies": {
     "@gltf-transform/core": "^4.0.10",

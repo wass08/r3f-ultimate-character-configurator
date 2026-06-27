@@ -13,6 +13,7 @@ export const Avatar = ({ ...props }) => {
   const customization = useConfiguratorStore((state) => state.customization);
   const { actions } = useAnimations(animations, group);
   const setDownload = useConfiguratorStore((state) => state.setDownload);
+  const setExportForPet = useConfiguratorStore((state) => state.setExportForPet);
 
   const pose = useConfiguratorStore((state) => state.pose);
 
@@ -61,7 +62,28 @@ export const Avatar = ({ ...props }) => {
       link.download = filename;
       link.click();
     }
+
+    // Pet-ready export: the complete character (body + equipped assets, on the
+    // mixamorig skeleton) as an UNCOMPRESSED binary glTF. No Draco/quantize, so
+    // the desktop companion loads it with no decoder. The pet binds Poses.glb to
+    // it because the skeleton/bone names are preserved.
+    function exportForPet() {
+      const exporter = new GLTFExporter();
+      exporter.parse(
+        group.current,
+        (result) => {
+          save(
+            new Blob([result], { type: "application/octet-stream" }),
+            `companion_${+new Date()}.glb`
+          );
+        },
+        (error) => console.error(error),
+        { binary: true, onlyVisible: true }
+      );
+    }
+
     setDownload(download);
+    setExportForPet(exportForPet);
   }, []);
 
   useEffect(() => {

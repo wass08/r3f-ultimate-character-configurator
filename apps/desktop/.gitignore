@@ -1,0 +1,7 @@
+node_modules
+dist
+
+# Generated pose library (built via `npm run add-pose` or Pose Studio → Save to library)
+public/models/poses/*.glb
+public/models/poses/*.gltf
+public/models/poses/poses.json

@@ -177,6 +177,22 @@ const DownloadButton = () => {
   );
 };
 
+// Exports a complete, uncompressed character GLB the desktop companion can load
+// (drag it into the pet's Pose Studio → Load .glb, or save it as the active
+// character). Separate from Download, which is Draco-compressed.
+const ExportForPetButton = () => {
+  const exportForPet = useConfiguratorStore((state) => state.exportForPet);
+  return (
+    <button
+      className="rounded-lg bg-emerald-500 hover:bg-emerald-600 transition-colors duration-300 text-white font-medium px-4 py-3 pointer-events-auto drop-shadow-md"
+      onClick={exportForPet}
+      title="Export this character for the desktop companion"
+    >
+      Export for Pet
+    </button>
+  );
+};
+
 export const UI = () => {
   const currentCategory = useConfiguratorStore(
     (state) => state.currentCategory
@@ -209,6 +225,7 @@ export const UI = () => {
             <RandomizeButton />
             <ScreenshotButton />
             <DownloadButton />
+            <ExportForPetButton />
           </div>
         </div>
         <div className="md:px-10 flex flex-col">

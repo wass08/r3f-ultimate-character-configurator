@@ -1,0 +1,27 @@
+{
+  "name": "@companion/character-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone, event-driven 3D character runtime (GLB + poses + action bus). No web infra.",
+  "exports": {
+    ".": "./src/index.js",
+    "./events": "./src/events/index.js",
+    "./actions": "./src/actions/index.js"
+  },
+  "peerDependencies": {
+    "@react-three/drei": ">=9",
+    "@react-three/fiber": ">=8",
+    "react": ">=18",
+    "three": ">=0.160",
+    "three-stdlib": ">=2.3",
+    "zustand": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "@react-three/drei": { "optional": true },
+    "@react-three/fiber": { "optional": true },
+    "react": { "optional": true },
+    "three": { "optional": true },
+    "three-stdlib": { "optional": true }
+  }
+}

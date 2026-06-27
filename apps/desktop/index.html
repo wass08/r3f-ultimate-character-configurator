@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/favicon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Companion</title>
+    <style>
+      /* Transparent for the Electron desktop-pet window. The `web-demo` class is
+         added when opened in a normal browser tab so the scene has a backdrop. */
+      html,
+      body,
+      #root {
+        margin: 0;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+      }
+      body.web-demo {
+        background: radial-gradient(120% 120% at 50% 0%, #1c1840 0%, #0c0a1e 60%, #050410 100%);
+      }
+    </style>
+    <script>
+      // Outside Electron, give the demo a visible background.
+      if (!navigator.userAgent.includes("Electron")) {
+        document.addEventListener("DOMContentLoaded", () => document.body.classList.add("web-demo"));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

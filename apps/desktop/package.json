@@ -1,0 +1,40 @@
+{
+  "name": "@companion/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "description": "Lightweight Electron shell: loads the character runtime and wires tray / taskbar / OS notifications into the bus.",
+  "scripts": {
+    "dev": "concurrently -k -n vite,electron \"vite\" \"wait-on tcp:127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
+    "build": "vite build",
+    "pet": "vite build && electron .",
+    "electron": "electron .",
+    "gateway": "node server/gateway.mjs",
+    "mcp": "node mcp/server.mjs",
+    "add-pose": "node scripts/add-pose.mjs"
+  },
+  "dependencies": {
+    "@companion/character-core": "*",
+    "@gltf-transform/core": "^4.0.10",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@react-three/drei": "^9.112.0",
+    "@react-three/fiber": "^8.17.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.168.0",
+    "three-stdlib": "^2.33.0",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^33.2.0",
+    "fbx2gltf": "^0.9.7",
+    "vite": "^5.4.1",
+    "wait-on": "^8.0.1"
+  }
+}

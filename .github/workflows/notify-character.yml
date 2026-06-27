@@ -1,0 +1,44 @@
+# Sample: make the character react to CI/CD on this repo.
+#
+# Fires a notification at your companion when CI finishes — a green "matrix"
+# reaction on success, a "facepalm" on failure. Point GATEWAY_URL at a publicly
+# reachable gateway (e.g. an ngrok/cloudflared tunnel to your local machine, or a
+# small hosted instance) via the repo secret COMPANION_GATEWAY_URL.
+#
+# This is the "GitHub can have actions created" half of the MCP/webhook story:
+# the same /notify endpoint the MCP server uses is just a webhook here.
+
+name: Notify Character
+
+on:
+  workflow_run:
+    workflows: ["CI"] # ← change to the name of your build/test workflow
+    types: [completed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ vars.COMPANION_GATEWAY_URL != '' || secrets.COMPANION_GATEWAY_URL != '' }}
+    steps:
+      - name: Send reaction to companion
+        env:
+          GATEWAY_URL: ${{ secrets.COMPANION_GATEWAY_URL }}
+          GATEWAY_TOKEN: ${{ secrets.COMPANION_GATEWAY_TOKEN }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ "$CONCLUSION" = "success" ]; then
+            KIND="deploy_succeeded"; TITLE="✅ CI passed on $REPO"
+          else
+            KIND="ci_failed"; TITLE="❌ CI $CONCLUSION on $REPO"
+          fi
+          curl -sS -X POST "$GATEWAY_URL/notify" \
+            -H "Content-Type: application/json" \
+            ${GATEWAY_TOKEN:+-H "Authorization: Bearer $GATEWAY_TOKEN"} \
+            -d "$(jq -n \
+                  --arg kind "$KIND" \
+                  --arg title "$TITLE" \
+                  --arg actor "$ACTOR" \
+                  '{source:"github", kind:$kind, title:$title, actor:$actor}')" \
+            && echo "Reaction sent."
